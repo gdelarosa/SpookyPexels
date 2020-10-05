@@ -1,4 +1,6 @@
 ### SpookyPexels
+![giphy](https://media.giphy.com/media/nkBa9eREC4D7O/giphy.gif)
+
 A simple Halloween themed iOS app that displays spooky images. 
 
 # Uses: 

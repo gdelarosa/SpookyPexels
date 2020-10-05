@@ -8,10 +8,16 @@ A simple Halloween themed iOS app that displays spooky images.
 - 💀 Pexels API
 - 👻 MVC design pattern 
 - 🧟‍♀️ UIKit 
-- 🧛🏼‍♀️ CollectionView with compositional layout
+- 🩸 Programmatic layout
+- 🧛🏼‍♀️ Compositional layout
 - 👹 Codable 
 - 😈 URLSession 
-- 👽 Unit Tests 
+- 👽 Unit tests 
 - 👾 Animations 
-- 👺 Grand Central Dispatch
-- ⚰️ Error Handling
+- 👺 Grand central dispatch
+- ⚰️ Error handling
+
+# Resources 
+- [Layouts by Apple](https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/layouts)
+- [Implementing Modern Collection Views](https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/implementing_modern_collection_views)
+- [Pexels API documentation](https://www.pexels.com/api/documentation/)

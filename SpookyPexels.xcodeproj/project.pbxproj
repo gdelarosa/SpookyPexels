@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		777403AE252D35360070B1B2 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777403AD252D35360070B1B2 /* Photos.swift */; };
+		777403B9252D36980070B1B2 /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777403B8252D36980070B1B2 /* Videos.swift */; };
 		7793F564252AA2DF0004244D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793F563252AA2DF0004244D /* AppDelegate.swift */; };
 		7793F566252AA2DF0004244D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793F565252AA2DF0004244D /* SceneDelegate.swift */; };
 		7793F568252AA2DF0004244D /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793F567252AA2DF0004244D /* MainController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		777403AD252D35360070B1B2 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		777403B8252D36980070B1B2 /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
 		7793F560252AA2DF0004244D /* SpookyPexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpookyPexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7793F563252AA2DF0004244D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7793F565252AA2DF0004244D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 		7793F59B252AAF1B0004244D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				777403AD252D35360070B1B2 /* Photos.swift */,
+				777403B8252D36980070B1B2 /* Videos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 			files = (
 				7793F568252AA2DF0004244D /* MainController.swift in Sources */,
 				7793F564252AA2DF0004244D /* AppDelegate.swift in Sources */,
+				777403AE252D35360070B1B2 /* Photos.swift in Sources */,
+				777403B9252D36980070B1B2 /* Videos.swift in Sources */,
 				7793F566252AA2DF0004244D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

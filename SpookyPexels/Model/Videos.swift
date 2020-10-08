@@ -7,8 +7,22 @@
 
 import Foundation
 
-// MARK: - Videos
-struct Videos: Codable {
+// MARK: - Video Results
+struct VideoResults: Codable {
+    let page, perPage, totalResults: Int
+    let url: String
+    let videos: [Video]
+    
+    enum CodingKeys: String, CodingKey {
+           case page
+           case perPage = "per_page"
+           case totalResults = "total_results"
+           case url, videos
+       }
+}
+
+// MARK: - Videos Model
+struct Video: Codable {
     let id, width, height: Int
     let url: String
     let image: String
@@ -16,14 +30,14 @@ struct Videos: Codable {
     let user: User
     let videoFiles: [VideoFile]
     let videoPictures: [VideoPicture]
-
+    
     enum CodingKeys: String, CodingKey {
-        case id, width, height, url, image
-        case duration, user
-        case videoFiles = "video_files"
-        case videoPictures = "video_pictures"
-    }
+            case id, width, height, url, image, duration, user
+            case videoFiles = "video_files"
+            case videoPictures = "video_pictures"
+        }
 }
+
 
 // MARK: - User
 struct User: Codable {
@@ -37,14 +51,14 @@ struct User: Codable {
 struct VideoFile: Codable {
     let id: Int
     let quality, fileType: String
-    let width, height: Int
+    let width, height: Int?
     let link: String
-
+    
     enum CodingKeys: String, CodingKey {
-        case id, quality
-        case fileType = "file_type"
-        case width, height, link
-    }
+            case id, quality
+            case fileType = "file_type"
+            case width, height, link
+        }
 }
 
 

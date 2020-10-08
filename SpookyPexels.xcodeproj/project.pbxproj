@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		776C7DD2252E5C5900F8E89C /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C7DD1252E5C5900F8E89C /* VideoCell.swift */; };
+		776C7DD7252E5C6800F8E89C /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C7DD6252E5C6800F8E89C /* ImageCell.swift */; };
 		777403AE252D35360070B1B2 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777403AD252D35360070B1B2 /* Photos.swift */; };
 		777403B9252D36980070B1B2 /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777403B8252D36980070B1B2 /* Videos.swift */; };
 		777403C0252D53580070B1B2 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777403BF252D53580070B1B2 /* ErrorHandling.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		776C7DD1252E5C5900F8E89C /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		776C7DD6252E5C6800F8E89C /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		777403AD252D35360070B1B2 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		777403B8252D36980070B1B2 /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
 		777403BF252D53580070B1B2 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
@@ -165,9 +169,9 @@
 		7793F599252AAF0D0004244D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7793F567252AA2DF0004244D /* MainController.swift */,
 				7793F563252AA2DF0004244D /* AppDelegate.swift */,
 				7793F565252AA2DF0004244D /* SceneDelegate.swift */,
-				7793F567252AA2DF0004244D /* MainController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,6 +179,8 @@
 		7793F59A252AAF160004244D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				776C7DD1252E5C5900F8E89C /* VideoCell.swift */,
+				776C7DD6252E5C6800F8E89C /* ImageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,12 +325,14 @@
 			files = (
 				7793F568252AA2DF0004244D /* MainController.swift in Sources */,
 				777403D4252D5B9E0070B1B2 /* Service.swift in Sources */,
+				776C7DD2252E5C5900F8E89C /* VideoCell.swift in Sources */,
 				7793F564252AA2DF0004244D /* AppDelegate.swift in Sources */,
 				777403AE252D35360070B1B2 /* Photos.swift in Sources */,
 				777403C0252D53580070B1B2 /* ErrorHandling.swift in Sources */,
 				777403C6252D57C90070B1B2 /* Constants.swift in Sources */,
 				777403B9252D36980070B1B2 /* Videos.swift in Sources */,
 				7793F566252AA2DF0004244D /* SceneDelegate.swift in Sources */,
+				776C7DD7252E5C6800F8E89C /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

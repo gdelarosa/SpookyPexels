@@ -6,7 +6,7 @@
 
 import Foundation
 
-// MARK: - Resources
+// MARK: - Photos Model
 struct Photos: Codable {
     let id, width, height: Int
     let url: String

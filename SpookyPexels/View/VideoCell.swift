@@ -81,7 +81,7 @@ extension VideoCell {
         categoryLabel.textColor = .placeholderText
         
         //imageView.layer.borderColor = UIColor.white.cgColor
-        videoView.layer.borderWidth = 1
+        //videoView.layer.borderWidth = 1
         videoView.layer.cornerRadius = 4
         videoView.backgroundColor = UIColor.blue
         

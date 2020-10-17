@@ -24,7 +24,9 @@ class MainController: UICollectionViewController {
     var url: String = ""
     var urlArray: [String] = []
     var videos: [Video] = []
+    var images: [Photo] = []
     var video: VideoResults?
+    var image: ImageResults?
     var videoURL: String = ""
     var imageURL: String = ""
 
@@ -39,9 +41,12 @@ class MainController: UICollectionViewController {
     var videoFileLinkArray: [String] = []
     var videoPicturesPictureURL: String = ""
     var videoData: VideoResults?
+    var imageData: Photo?
     let videoName: String = ""
+    let imageName: String = ""
     
     var videoLinkArray:[String] = []
+    var imageLinkArray: [String] = []
     var userNames: [String] = []
     var namesFromURL:[String] = []
     var visibleIP : IndexPath?
@@ -53,29 +58,28 @@ class MainController: UICollectionViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Halloween"
-        collectionView.backgroundColor = .white
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: videoCellId)
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: imageCellId)
-        print("VDL")
+        navigationItem.title = "Halloween"
+        collectionView.backgroundColor = .white
         loadVideoData(numberOfItems: numberOfItems)
+        loadImageData(numberOfItems: numberOfItems)
         
     }
-    
+
     // MARK: - Methods
     
     func loadVideoData(numberOfItems: Int) {
-         print("Loading data...")
          client.getVideoData(items: numberOfItems, completion: { (error,data) in
             if error != nil {
                 print("Error parsing video data")
             } else {
-               
                 self.per_page = data.perPage
                 self.total_results = data.totalResults
                 self.videos = data.videos
                 
                 for video in self.videos {
+                    
                     self.userNameArray.append(video.user.name)
                     self.urlArray.append(video.url)
                     
@@ -97,8 +101,32 @@ class MainController: UICollectionViewController {
                         }
                     }
                 }
+                self.videoLinkArray = self.videoFileLinkArray
             }
             
+        })
+    }
+    
+    func loadImageData(numberOfItems: Int) {
+         client.getImageData(items: numberOfItems, completion: { (error,data) in
+            if error != nil {
+                print("Error parsing image data")
+            } else {
+                self.per_page = data.perPage
+                self.total_results = data.totalResults
+                self.images = data.photos
+               
+                for image in self.images {
+                    self.userNameArray.append(image.photographer)
+                    self.urlArray.append(image.url)
+                    
+                }
+                self.imageLinkArray = self.urlArray
+            
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
         })
     }
     
@@ -159,6 +187,8 @@ class MainController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return per_page
+        } else if section == 1 {
+            return per_page
         }
         return 8
     }
@@ -167,17 +197,25 @@ class MainController: UICollectionViewController {
         
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: videoCellId, for: indexPath) as! VideoCell
-
-            let videoURLString = String(videoLinkArray[indexPath.row]) + String(".mp4")
-            let videoURL = URL(string: videoURLString)
             
+            let videoURLString = String(videoLinkArray[indexPath.row]) + String(".mp4")
+
+            let videoURL = URL(string: videoURLString)
+
             cell.videoPlayerItem = AVPlayerItem.init(url: videoURL!)
-            cell.videoView.backgroundColor = .clear
            
             return cell
         } else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as! ImageCell
-           
+            let imageString = String(imageLinkArray[indexPath.row])
+            let url = URL(string: imageString)
+            let data = try? Data(contentsOf: url!)
+            
+            if let imageData = data {
+                let imageFromDatabase = UIImage(data: imageData)
+                cell.imageView.image = imageFromDatabase
+            }
+            
             return cell
         } else {
             let cell = UICollectionViewCell()

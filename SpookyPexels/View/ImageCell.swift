@@ -39,9 +39,10 @@ extension ImageCell {
         categoryLabel.textColor = .placeholderText
         
         //imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.layer.cornerRadius = 2
+       // imageView.layer.borderWidth = 1
+       // imageView.layer.cornerRadius = 2
         imageView.backgroundColor = UIColor.red
+        imageView.contentMode = .scaleAspectFill
         
         let spacing = CGFloat(10)
         NSLayoutConstraint.activate([

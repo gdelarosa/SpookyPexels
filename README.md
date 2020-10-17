@@ -6,7 +6,7 @@ A simple Halloween themed iOS app that displays spooky images.
 # Uses: 
 - 🎃 Swift 5
 - 💀 Pexels API
-- 👻 MVC design pattern 
+- 👻 MVVM design pattern 
 - 🧟‍♀️ UIKit 
 - 🩸 Programmatic layout
 - 🧛🏼‍♀️ Compositional layout

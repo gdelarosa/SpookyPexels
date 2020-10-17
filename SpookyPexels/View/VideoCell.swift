@@ -28,8 +28,12 @@ class VideoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        self.setupMoviePlayer()
+
     }
+    
     required init?(coder: NSCoder) {
+        super.init(coder: coder)
         fatalError()
     }
     
@@ -39,9 +43,11 @@ class VideoCell: UICollectionViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        self.setupMoviePlayer()
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        print("Awake from nib")
+//        self.setupMoviePlayer()
+//    }
     
     func setupMoviePlayer() {
         print("Setting up movie player")

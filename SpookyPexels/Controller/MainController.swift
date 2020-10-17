@@ -58,14 +58,53 @@ class MainController: UICollectionViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: videoCellId)
-        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: imageCellId)
-        navigationItem.title = "Halloween"
-        collectionView.backgroundColor = .white
+        setupNavigationBar()
+        setNavTitle()
         loadVideoData(numberOfItems: numberOfItems)
         loadImageData(numberOfItems: numberOfItems)
+        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: videoCellId)
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: imageCellId)
+        collectionView.backgroundColor = .white
+        collectionView.contentInset = UIEdgeInsets(top: 55, left: 0, bottom: 0, right: 0)
+       
         
     }
+    
+    /**
+    Call this function to set the navigation bar title.
+    */
+    func setNavTitle() {
+        let titleLabel = UILabel()
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.textColor = UIColor.black
+        titleLabel.textAlignment = .center
+        titleLabel.text = "Halloween"
+        titleLabel.sizeToFit()
+        navigationItem.titleView = titleLabel
+    }
+    
+    /**
+       Call this function to setup the navigation bar.
+       */
+      func setupNavigationBar() {
+          if #available(iOS 13.0, *) {
+              let appearance = UINavigationBarAppearance()
+              appearance.backgroundColor = .black
+              UINavigationBar.appearance().tintColor = .white
+              UINavigationBar.appearance().standardAppearance = appearance
+              UINavigationBar.appearance().compactAppearance = appearance
+              UINavigationBar.appearance().scrollEdgeAppearance = appearance
+              UINavigationBar.appearance().clipsToBounds = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+          } else {
+              self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+              self.navigationController?.navigationBar.shadowImage = UIImage()
+              UINavigationBar.appearance().tintColor = .white
+              UINavigationBar.appearance().barTintColor = .white
+              UINavigationBar.appearance().isTranslucent = false
+          }
+      }
 
     // MARK: - Methods
     
@@ -92,8 +131,19 @@ class MainController: UICollectionViewController {
                         self.durationString = "0:" + String(duration.seconds)
                     }
                     self.durationArray.append(self.durationString)
-                    
+                   
+                    self.videoLinkArray = self.videoFileLinkArray
                     let video_files = video.videoFiles
+                    let thumbnails  = video.videoPictures
+                    
+                    if thumbnails.count > 0 {
+                        for pic in thumbnails {
+                            if pic.nr == 0 {
+                                self.videoPictureArray.append(pic.picture)
+                            }
+                        }
+                       
+                    }
                     for videoFile in video_files {
                         if videoFile.quality == "sd" {
                             self.videoFileLinkArray.append(videoFile.link)
@@ -101,7 +151,10 @@ class MainController: UICollectionViewController {
                         }
                     }
                 }
-                self.videoLinkArray = self.videoFileLinkArray
+                
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
             }
             
         })
@@ -121,11 +174,13 @@ class MainController: UICollectionViewController {
                     self.urlArray.append(image.url)
                     
                 }
-                self.imageLinkArray = self.urlArray
-            
                 DispatchQueue.main.async {
+                    print("Reloading images")
                     self.collectionView.reloadData()
                 }
+                self.imageLinkArray = self.urlArray
+               
+               
             }
         })
     }

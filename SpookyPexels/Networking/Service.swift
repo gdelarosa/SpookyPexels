@@ -9,19 +9,23 @@ import Foundation
 
 typealias  JSONDataResult = (_ error: Error?, _ data: VideoResults) -> Void
 
+// MARK: - Service class
 class Service {
     
+    // MARK: - Properties
     static let shared = Service()
     private let session: URLSession
     
+    // MARK: - Initializer
     private init () {
         session = URLSession.shared
     }
     
-    
+    // MARK: - Methods
+    // Processes the URL to produce readable data
     func processVideoData(items:Int, completion: @escaping JSONDataResult) {
-        let videoURLString = "https://api.pexels.com/videos/search?query=halloween&per_page=\(items)&page=1"
-       
+        let videoURLString = "\(API.VIDEO_SEARCH_URL)?query=halloween&per_page=\(items)&page=1"
+        
         let URL = NSURL(string: videoURLString)
         let request = NSMutableURLRequest(url: URL! as URL)
         request.httpMethod = API.GET

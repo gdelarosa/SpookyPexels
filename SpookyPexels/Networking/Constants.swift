@@ -7,13 +7,11 @@
 
 import Foundation
 
+// MARK: - API Constants
 struct API {
-   
     static let VIDEO_BASE_URL = "https://api.pexels.com/videos"
     static let VIDEO_SEARCH_URL = "https://api.pexels.com/videos/search"
     static let HEADER = "Authorization"
     static let KEY = ""
     static let GET = "GET"
-    
-    
 }

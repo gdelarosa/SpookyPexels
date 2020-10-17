@@ -8,7 +8,6 @@
 import Foundation
 
 class ViewModel {
-    
     var per_page: Int = 0
     var total_results: Int = 0
     var url: String = ""
@@ -72,8 +71,6 @@ class ViewModel {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "jsonInitData"), object: self)
             }
         })
-        
-        
     }
     
     private func getFormattedVideoTime(totalVideoDuration: Int) -> (hour: Int, minute: Int, seconds: Int){

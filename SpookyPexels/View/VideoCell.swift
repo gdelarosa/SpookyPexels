@@ -9,8 +9,8 @@ import UIKit
 import AVFoundation
 
 class VideoCell: UICollectionViewCell {
-    
     static let reuseIdentifier = "video-cell-reuse-identifier"
+    
     let videoView = UIView()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
@@ -42,15 +42,8 @@ class VideoCell: UICollectionViewCell {
             avPlayer?.replaceCurrentItem(with: self.videoPlayerItem)
         }
     }
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        print("Awake from nib")
-//        self.setupMoviePlayer()
-//    }
-    
+
     func setupMoviePlayer() {
-        print("Setting up movie player")
         self.avPlayer = AVPlayer.init(playerItem: self.videoPlayerItem)
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
@@ -85,19 +78,15 @@ extension VideoCell {
         categoryLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
         categoryLabel.adjustsFontForContentSizeCategory = true
         categoryLabel.textColor = .placeholderText
+    
+        videoView.backgroundColor = UIColor.clear
         
-        //imageView.layer.borderColor = UIColor.white.cgColor
-        //videoView.layer.borderWidth = 1
-        videoView.layer.cornerRadius = 4
-        videoView.backgroundColor = UIColor.blue
-        
-        let spacing = CGFloat(10)
         NSLayoutConstraint.activate([
             videoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             videoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             videoView.topAnchor.constraint(equalTo: contentView.topAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: spacing),
+            titleLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             

@@ -30,13 +30,30 @@ class MainController: UICollectionViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBarTitle()
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: videoCellId)
-        collectionView.backgroundColor = .white
-        collectionView.contentInset = UIEdgeInsets(top: 55, left: 0, bottom: 0, right: 0)
+        collectionView.backgroundColor = .orange
+      
         viewModel.getVideoData(numberOfItems: numberOfItems)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshView), name: NSNotification.Name(rawValue: "jsonInitData"), object: nil)
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = true
+      }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnSwipe = false
+      }
+    
+    // MARK: - Methods
+    func setNavigationBarTitle() {
+        self.title = "Halloween"
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ShadowedGermanica", size: 45)!]
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     @objc func refreshView() {
@@ -69,54 +86,19 @@ class MainController: UICollectionViewController {
             self.collectionView.reloadData()
         }
     }
-    
-    // MARK: - Methods
 
     
     // MARK:  - CollectionView Layout
     static func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
-            
-            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-            item.contentInsets.trailing = 2
-            
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [item])
+            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(270)))
+            item.contentInsets.bottom = 16
+            item.contentInsets.trailing = 16
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1000)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 5, leading: 16, bottom: 0, trailing: 0)
+            section.contentInsets = .init(top: 32, leading: 16, bottom: 0, trailing: 0)
             
-            section.orthogonalScrollingBehavior = .paging
             return section
-            
-//            if sectionNumber == 0 {
-//                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-//                item.contentInsets.trailing = 2
-//
-//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [item])
-//                let section = NSCollectionLayoutSection(group: group)
-//                section.contentInsets = .init(top: 5, leading: 16, bottom: 0, trailing: 0)
-//
-//                section.orthogonalScrollingBehavior = .paging
-//
-//                return section
-//            } else if sectionNumber == 1 {
-//
-//                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(300)))
-//                item.contentInsets.bottom = 16
-//                item.contentInsets.trailing = 16
-//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1000)), subitems: [item])
-//                let section = NSCollectionLayoutSection(group: group)
-//                section.contentInsets = .init(top: 32, leading: 16, bottom: 0, trailing: 0)
-//
-//                return section
-//            } else {
-//                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(300)))
-//                item.contentInsets.bottom = 16
-//                item.contentInsets.trailing = 16
-//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1000)), subitems: [item])
-//                let section = NSCollectionLayoutSection(group: group)
-//                section.contentInsets = .init(top: 32, leading: 16, bottom: 0, trailing: 0)
-//                return section
-//            }
         }
     }
 
@@ -142,7 +124,6 @@ class MainController: UICollectionViewController {
         cell.categoryLabel.text = userNames[indexPath.row]
         cell.titleLabel.text = namesFromURL[indexPath.row]
         cell.videoPlayerItem = AVPlayerItem.init(url: videoURL!)
-        cell.videoView.backgroundColor = .clear
        
         return cell
         

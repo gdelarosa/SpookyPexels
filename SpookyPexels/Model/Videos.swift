@@ -14,11 +14,11 @@ struct VideoResults: Codable {
     let videos: [Video]
     
     enum CodingKeys: String, CodingKey {
-           case page
-           case perPage = "per_page"
-           case totalResults = "total_results"
-           case url, videos
-       }
+        case page
+        case perPage = "per_page"
+        case totalResults = "total_results"
+        case url, videos
+    }
 }
 
 // MARK: - Videos Model
@@ -32,10 +32,10 @@ struct Video: Codable {
     let videoPictures: [VideoPicture]
     
     enum CodingKeys: String, CodingKey {
-            case id, width, height, url, image, duration, user
-            case videoFiles = "video_files"
-            case videoPictures = "video_pictures"
-        }
+        case id, width, height, url, image, duration, user
+        case videoFiles = "video_files"
+        case videoPictures = "video_pictures"
+    }
 }
 
 
@@ -55,10 +55,10 @@ struct VideoFile: Codable {
     let link: String
     
     enum CodingKeys: String, CodingKey {
-            case id, quality
-            case fileType = "file_type"
-            case width, height, link
-        }
+        case id, quality
+        case fileType = "file_type"
+        case width, height, link
+    }
 }
 
 

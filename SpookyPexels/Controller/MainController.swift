@@ -19,6 +19,9 @@ class MainController: UICollectionViewController {
     private let videoCellId = "video-cell-reuse-identifier"
     private let imageCellId = "image-cell-reuse-identifier"
     
+    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+    let alert = UIAlertController(title: nil, message: "Loading 👹...", preferredStyle: .alert)
+    
     let client = Service.shared
     let viewModel = ViewModel()
     var videoLinkArray:[String] = []
@@ -30,6 +33,7 @@ class MainController: UICollectionViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadActivityView()
         setNavigationBarTitle()
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: videoCellId)
         collectionView.backgroundColor = .orange
@@ -52,8 +56,21 @@ class MainController: UICollectionViewController {
     // MARK: - Methods
     func setNavigationBarTitle() {
         self.title = "Halloween"
+        UIView.animate(withDuration: 5) {
+            self.navigationController?.navigationBar.frame = CGRect(x: 150, y: 300, width: 200, height: 20)
+        }
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "ShadowedGermanica", size: 45)!]
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func loadActivityView() {
+        self.loadingIndicator.isHidden = false
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating()
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
     }
     
     @objc func refreshView() {
@@ -84,6 +101,9 @@ class MainController: UICollectionViewController {
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
 

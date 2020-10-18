@@ -60,6 +60,7 @@ class VideoCell: UICollectionViewCell {
         
         self.backgroundColor = .clear
         self.videoView.layer.insertSublayer(avPlayerLayer!, at: 0)
+        self.avPlayer?.play() 
         
     }
 }
@@ -74,10 +75,11 @@ extension VideoCell {
         contentView.addSubview(categoryLabel)
         
         titleLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        titleLabel.textColor = .black
         titleLabel.adjustsFontForContentSizeCategory = true
         categoryLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
         categoryLabel.adjustsFontForContentSizeCategory = true
-        categoryLabel.textColor = .placeholderText
+        categoryLabel.textColor = .darkGray
     
         videoView.backgroundColor = UIColor.clear
         

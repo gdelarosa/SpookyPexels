@@ -45,7 +45,6 @@ class Service {
                 
                 let videoData = try
                     decoder.decode(VideoResults.self, from: data)
-                
                 completion(nil, videoData)
                 
             } catch let err {

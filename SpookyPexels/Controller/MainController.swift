@@ -54,8 +54,14 @@ class MainController: UICollectionViewController {
       }
     
     // MARK: - Methods
+    func networkCheck() throws {
+        if !NetworkCheck.isConnectedToNetwork() {
+            throw ErrorHandling.noInternet
+        }
+    }
+    
     func setNavigationBarTitle() {
-        self.title = "Halloween"
+        self.title = "Welcome"
         UIView.animate(withDuration: 5) {
             self.navigationController?.navigationBar.frame = CGRect(x: 150, y: 300, width: 200, height: 20)
         }

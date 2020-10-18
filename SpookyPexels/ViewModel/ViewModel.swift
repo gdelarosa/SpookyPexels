@@ -17,8 +17,7 @@ class ViewModel {
     var videoURL: String = ""
     var imageURL: String = ""
     
-    var durationString: String = ""
-    var durationArray: [String] = []
+   
     var video_files: [VideoFile] = []
     var video_pictures: [VideoPicture] = []
     
@@ -26,7 +25,6 @@ class ViewModel {
     var userNameArray: [String] = []
     
     var videoFileLinkArray: [String] = []
-    var imageFileLinkArray: [String] = []
     var videoPicturesPictureURL: String = ""
     
     var videoData: VideoResults?
@@ -38,7 +36,7 @@ class ViewModel {
         
         networkManager.processVideoData(items: numberOfItems, completion: {(error, data) in
             if error != nil {
-                print("Error parsing the Data")
+               print("Error occured with data")
             } else {
                 
                 self.per_page = data.perPage
@@ -50,19 +48,9 @@ class ViewModel {
                     self.userNameArray.append(video.user.name)
                     self.urlArray.append(video.url)
                     
-                    let duration = self.getFormattedVideoTime(totalVideoDuration: video.duration)
-                    if duration.hour != 0 {
-                        self.durationString = String(duration.hour) + ":" + String(duration.minute) + ":" + String(duration.seconds)
-                    } else if duration.minute != 0 {
-                        self.durationString = String(duration.minute) + ":" + String(duration.seconds)
-                    } else {
-                        self.durationString = "0:" + String(duration.seconds)
-                    }
-                    self.durationArray.append(self.durationString)
-                    
                     let video_files = video.videoFiles
                     for videoFile in video_files {
-                        if videoFile.quality == "sd" {
+                        if videoFile.quality == "hd" {
                             self.videoFileLinkArray.append(videoFile.link)
                             break
                         }

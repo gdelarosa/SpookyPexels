@@ -1,47 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="FlutedGermanica.ttf">
-            <string>FlutedGermanica</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Castle" translatesAutoresizingMaskIntoConstraints="NO" id="b2K-wM-nFJ">
-                                <rect key="frame" x="124" y="354" width="167" height="188"/>
+                                <rect key="frame" x="124" y="190" width="73" height="188"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="vIv-QG-TXk"/>
+                                    <constraint firstAttribute="height" constant="188" id="yeW-pj-dMW"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spooky Pexels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q64-KJ-G6D">
-                                <rect key="frame" x="59" y="233" width="305" height="95"/>
-                                <fontDescription key="fontDescription" name="FlutedGermanica" family="FlutedGermanica" pointSize="45"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
-                            <constraint firstItem="q64-KJ-G6D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="0BS-9g-apH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b2K-wM-nFJ" secondAttribute="trailing" constant="123" id="BfE-gn-PgH"/>
-                            <constraint firstItem="q64-KJ-G6D" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="189" id="Cxb-GA-F3O"/>
                             <constraint firstItem="b2K-wM-nFJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="124" id="Xsj-om-e77"/>
-                            <constraint firstItem="b2K-wM-nFJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="310" id="YAj-dE-PYP"/>
-                            <constraint firstItem="b2K-wM-nFJ" firstAttribute="top" secondItem="q64-KJ-G6D" secondAttribute="bottom" constant="26" id="g7l-cW-21X"/>
+                            <constraint firstItem="b2K-wM-nFJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="190" id="YAj-dE-PYP"/>
                             <constraint firstItem="b2K-wM-nFJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="oXY-TA-bZI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="q64-KJ-G6D" secondAttribute="trailing" constant="50" id="ygA-NJ-o1m"/>
                         </constraints>
                     </view>
                 </viewController>

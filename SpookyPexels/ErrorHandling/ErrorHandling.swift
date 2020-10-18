@@ -12,5 +12,4 @@ enum ErrorHandling: Error {
     case invalidRequest
     case requestFailed
     case unknown
-    
 }

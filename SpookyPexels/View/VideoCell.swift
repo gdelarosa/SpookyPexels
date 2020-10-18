@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 
 class VideoCell: UICollectionViewCell {
+    // MARK: - Properties
     static let reuseIdentifier = "video-cell-reuse-identifier"
     
     let videoView = UIView()
@@ -24,11 +25,11 @@ class VideoCell: UICollectionViewCell {
     var pictureLink: String = ""
     var controllsAreShown = true
     
-    
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        self.setupMoviePlayer()
+        self.setupVideoPlayer()
 
     }
     
@@ -42,22 +43,16 @@ class VideoCell: UICollectionViewCell {
             avPlayer?.replaceCurrentItem(with: self.videoPlayerItem)
         }
     }
-
-    func setupMoviePlayer() {
+    
+    // MARK: - Methods
+    func setupVideoPlayer() {
         self.avPlayer = AVPlayer.init(playerItem: self.videoPlayerItem)
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
-        avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+        avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
-        if UIScreen.main.bounds.width == 375 {
-            let widthRequired = self.frame.size.width - 20
-            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
-        } else if UIScreen.main.bounds.width == 320 {
-            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: (self.frame.size.height - 120) * 1.78, height: self.frame.size.height - 120)
-        } else {
-            let widthRequired = self.frame.size.width
-            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
-        }
-        
+        let widthRequired = self.frame.size.width
+        avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
+
         self.backgroundColor = .clear
         self.videoView.layer.insertSublayer(avPlayerLayer!, at: 0)
         self.avPlayer?.play() 

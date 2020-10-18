@@ -21,13 +21,14 @@ class MainController: UICollectionViewController {
     
     let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
     let alert = UIAlertController(title: nil, message: "Loading 👹...", preferredStyle: .alert)
+    var ghostImage = UIImageView()
     
     let client = Service.shared
     let viewModel = ViewModel()
     var videoLinkArray:[String] = []
     var userNames: [String] = []
     var namesFromURL:[String] = []
-    var numberOfItems = 15
+    var numberOfItems = 20
     var videoPictureArray: [String] = []
    
     // MARK: - View Life Cycle
@@ -46,8 +47,8 @@ class MainController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.hidesBarsOnSwipe = true
-      }
-    
+    }
+   
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnSwipe = false
@@ -58,6 +59,15 @@ class MainController: UICollectionViewController {
         if !NetworkCheck.isConnectedToNetwork() {
             throw ErrorHandling.noInternet
         }
+    }
+    
+    func setGhostImage() {
+        let imageName = "Ghost"
+        let image = UIImage(named: imageName)
+        ghostImage = UIImageView(image: image!)
+        ghostImage.contentMode = UIView.ContentMode.scaleAspectFit
+        ghostImage.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+        view.addSubview(ghostImage)
     }
     
     func setNavigationBarTitle() {
@@ -79,10 +89,22 @@ class MainController: UICollectionViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func moveGhost(_ imageView: UIImageView,_ speed:CGFloat) {
+        let speeds = speed
+        let imageSpeed = speeds / view.frame.size.width
+        let averageSpeed = (view.frame.size.width - imageView.frame.origin.x) * imageSpeed
+        UIView.animate(withDuration: TimeInterval(averageSpeed), delay: 0.0, options: .curveLinear, animations: {
+            imageView.frame.origin.x = self.view.frame.size.width
+        }, completion: { (_) in
+            imageView.frame.origin.x = -imageView.frame.size.width
+            self.moveGhost(imageView,speeds)
+        })
+    }
+    
     @objc func refreshView() {
         userNames = viewModel.userNameArray
-        
         namesFromURL.removeAll()
+        
         for name in viewModel.urlArray {
             
             let nameString = name
@@ -127,12 +149,12 @@ class MainController: UICollectionViewController {
             return section
         }
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        setGhostImage()
+        moveGhost(ghostImage,10)
     }
-    
-    
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }

@@ -13,8 +13,7 @@ A simple Halloween themed iOS app that displays spooky videos.
 - 🩸 Programmatic layout
 - 🧛🏼‍♀️ Compositional layout
 - 👹 Codable 
-- 😈 URLSession 
-- 👽 Unit tests 
+- 😈 URLSession  
 - 👾 Animations 
 - 👺 Grand central dispatch
 - ⚰️ Error handling
